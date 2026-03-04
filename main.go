@@ -10,6 +10,7 @@ import (
 	"io"
 	"net/http"
 	"net/url"
+	"os"
 	"strings"
 	"time"
 )
@@ -276,6 +277,19 @@ func multiTurnConversation(apiKey, baseURL, model, proxyAddr string) error {
 // ==================== 主函数 ====================
 
 func main() {
+	// 检查是否有命令行参数
+	if len(os.Args) > 1 {
+		// 命令行模式
+		RunCLI()
+		return
+	}
+
+	// 默认演示模式
+	runDemoMode()
+}
+
+// runDemoMode 运行演示模式
+func runDemoMode() {
 	// 配置参数
 	apiKey := ""
 	baseURL := "https://open.bigmodel.cn/api/coding/paas/v4"
